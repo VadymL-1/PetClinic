@@ -1,12 +1,14 @@
 # Vagrantfile
 DB_NAME = ENV.fetch("DB_NAME", "petclinic")
 DB_USER = ENV.fetch("DB_USER", "petuser")
-DB_PASS = ENV.fetch("DB_PASS", "ChangeMe123!")
+DB_PASS = ENV.fetch("DB_PASS", "ChangeMe123")
 DB_PORT = ENV.fetch("DB_PORT", "3306")
 DB_IP   = "192.168.56.11"
 APP_IP  = "192.168.56.10"
+REPO_URL = ENV.fetch("REPO_URL", "https://github.com/VadymL-1/PetClinic.git")
 
 Vagrant.configure("2") do |config|
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.box = "cloud-image/ubuntu-26.04"
 
   config.vm.define "db" do |db|
